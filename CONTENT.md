@@ -1,12 +1,12 @@
 # Burbank Mutual Aid — Content Editing Guide
 
-This site is built so you (MJ) can update most copy without touching React. Everything that needs your input is listed below.
+This site is built so you (MJ) can update copy without touching React. Here's what to know.
 
 ---
 
-## Quick edits — single source of truth
+## The simplest edits — `src/lib/site.ts`
 
-Almost all sitewide copy lives in **`src/lib/site.ts`**:
+Almost all sitewide copy lives in a single file: **`src/lib/site.ts`**.
 
 - Organization name, tagline
 - Public email
@@ -15,32 +15,47 @@ Almost all sitewide copy lives in **`src/lib/site.ts`**:
 - Mission statement (full paragraph)
 - Press articles (title, outlet, author, date, excerpt, link)
 
-Open that file, change the text, save. The site updates everywhere.
+Open it, change the text, save, push. The site updates everywhere.
+
+---
+
+## The volunteer form is your Google Form
+
+The `/volunteer` page embeds your existing Google Form via iframe. That means:
+
+- **You manage the form questions** in Google Forms, like you already do.
+- **Submissions land in your Google Sheet** — same as today.
+- **No database, no admin login, no extra service to keep running.**
+
+If you want to swap the form (or update the URL), edit one line at the top of `src/app/volunteer/page.tsx`:
+
+```ts
+const FORM_URL = "https://docs.google.com/forms/d/e/.../viewform";
+```
+
+The site auto-redeploys when you push.
 
 ---
 
 ## `{REPLACE: …}` markers
 
-Anywhere on the rendered site, you'll see a yellow dashed box like this:
-**`{REPLACE: mj-bio}`**
-
-Each one is a placeholder waiting on real content from you. The id matches a `<Replace id="…">` tag in the code. Search the codebase for the id to find where it lives.
+Anywhere on the site you see a yellow dashed box like **`{REPLACE: mj-bio}`**, that's a placeholder waiting on real content from you. Each id matches a `<Replace id="…">` tag in the code.
 
 | ID | Page | What's needed |
 |---|---|---|
-| `mj-bio` | `/about` | A few sentences from MJ in her own words (origin, why mutual aid, what brings her to this work) |
-| `team-photo` | `/about` | A photo from a Sunday distribution. Put the file in `public/` and replace the `<Replace>` with `<Image src="/your-file.jpg" … />` |
+| `mj-bio` | `/about` | A few sentences from MJ in her own words |
+| `team-photo` | `/about` | A photo from a Sunday distribution |
 | `gallery-photo-1` | `/press` | First photo for the gallery |
 | `gallery-photo-2` | `/press` | Second photo for the gallery |
 | `gallery-photo-3` | `/press` | Third photo for the gallery |
 
-When you replace one, just delete the `<Replace … />` and put your real content (or `<Image>` tag, paragraph, etc.) in its place.
+When you replace one, delete the `<Replace … />` and put your real content (or `<Image>` tag, paragraph, etc.) in its place.
 
 ---
 
 ## Adding a logo
 
-Drop a square SVG/PNG into `public/logo.svg` (or similar), then in `src/components/Header.tsx` swap the **"BMA"** circle for an `<Image>`:
+Drop a square SVG or PNG into `public/logo.svg`, then in `src/components/Header.tsx` swap the **"BMA"** circle for an `<Image>`:
 
 ```tsx
 <Image src="/logo.svg" alt="Burbank Mutual Aid" width={36} height={36} />
@@ -48,42 +63,31 @@ Drop a square SVG/PNG into `public/logo.svg` (or similar), then in `src/componen
 
 ---
 
-## Volunteer form notifications
+## Environment variables
 
-The form (`/volunteer`) submits to a server action in `src/app/volunteer/actions.ts`. Behavior:
+The site needs **only one** env var, and only for SEO polish:
 
-- **Without `RESEND_API_KEY` + `ADMIN_EMAIL` set** → the submission is logged to the server console and the volunteer sees a success message. Useful for previews; nothing is emailed.
-- **With both set** → an email is sent to `ADMIN_EMAIL` with the volunteer's full submission. Set these in `.env.local` for local dev and in Vercel Settings → Environment Variables for previews/production.
+```
+NEXT_PUBLIC_SITE_URL=https://burbankmutualaid.org   # update once domain is live
+```
 
-To verify a custom send-from address (e.g. `hello@burbankmutualaid.org`), follow Resend's domain verification flow, then update `RESEND_FROM` in your env vars.
-
----
-
-## Admin page (`/admin`)
-
-Gated by a single password set in `ADMIN_PASSWORD`. Currently shows mock data only. When you're ready to persist real signups:
-
-1. Create a Supabase project, run the SQL migration in `supabase/schema.sql` (you'll need to add this file).
-2. Update `src/app/volunteer/actions.ts` to insert into the `volunteers` table before sending the email.
-3. Update `src/app/admin/page.tsx` to fetch real rows from Supabase.
+Set it in Vercel → Settings → Environment Variables. Everything else (Resend, Supabase, admin password) was removed once the Google Form took over signups.
 
 ---
 
 ## SEO
 
 - Page metadata is set per-route via `export const metadata` at the top of each `page.tsx`.
-- The site title template is `<page> · Burbank Mutual Aid`.
-- `robots.txt` and `sitemap.xml` auto-generate from `src/app/robots.ts` and `src/app/sitemap.ts`. Update `NEXT_PUBLIC_SITE_URL` once you have a domain.
+- Title template: `<page> · Burbank Mutual Aid`.
+- `robots.txt` and `sitemap.xml` auto-generate from `src/app/robots.ts` and `src/app/sitemap.ts`.
 
 ---
 
-## What hasn't been built yet (Phase 2+)
+## Future ideas (only if you want)
 
-- Supabase persistence and admin review actions
-- Shift calendar
-- SMS reminders (Twilio)
-- Donation system (Stripe)
-- Multilingual (Spanish)
-- Newsletter
+- Donation system (Stripe — Vercel has a free template)
+- Newsletter (Buttondown, Beehiiv, or just a "subscribe via email" link)
+- Multilingual / Spanish toggle
+- Photo gallery with proper image optimization
 
-These are intentionally deferred until Burbank Mutual Aid has a stronger volunteer base and a clearer need.
+None of these are needed. The Google-Form-powered site already does the job.
