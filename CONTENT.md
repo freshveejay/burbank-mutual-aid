@@ -39,7 +39,7 @@ The site auto-redeploys when you push.
 
 ## `{REPLACE: …}` markers
 
-Anywhere on the site you see a yellow dashed box like **`{REPLACE: mj-bio}`**, that's a placeholder waiting on real content from you. Each id matches a `<Replace id="…">` tag in the code.
+Anywhere on the site you see a yellow dashed box like **`{REPLACE: mj-bio}`**, that's a placeholder waiting on real content from you. These boxes only appear when running the site locally (`pnpm dev`) — they're hidden on the live site. Each id matches a `<Replace id="…">` tag in the code.
 
 | ID | Page | What's needed |
 |---|---|---|
