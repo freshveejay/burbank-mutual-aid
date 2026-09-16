@@ -5,7 +5,8 @@
   --color-cream: #faf6ef;
   --color-cream-dark: #f1ead9;
   --color-amber: #c8881a;
-  --color-amber-dark: #a16e10;
+  /* #8e610e keeps WCAG AA (4.5:1) for small text on both cream tones */
+  --color-amber-dark: #8e610e;
   --color-forest: #2f4a36;
   --color-forest-dark: #1f3325;
   --color-charcoal: #1f1d18;
@@ -34,7 +35,8 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-amber);
+  /* Forest green clears the 3:1 minimum for focus rings; amber did not. */
+  outline: 2px solid var(--color-forest);
   outline-offset: 2px;
   border-radius: 2px;
 }

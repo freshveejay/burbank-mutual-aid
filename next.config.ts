@@ -1,10 +1,24 @@
 import type { NextConfig } from "next";
 
+// Browser security headers. These control how OTHER sites may interact with
+// this one; they do not affect the Google Form we embed on Get Involved.
+const securityHeaders = [
+  // Nobody may show this site inside an iframe (clickjacking protection).
+  { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+];
+
 const nextConfig: NextConfig = {
   // Pin Turbopack root because the parent path contains spaces with no
   // parent package.json, which Turbopack tries to infer and rejects.
   turbopack: {
     root: process.cwd(),
+  },
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
   },
   async redirects() {
     return [
