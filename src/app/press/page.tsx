@@ -39,7 +39,7 @@ export default function PressPage() {
                 <a
                   href={p.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-amber-dark)] hover:underline"
                 >
                   Read on {p.outlet}{" "}

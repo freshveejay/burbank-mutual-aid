@@ -129,7 +129,7 @@ export default function ResourcesPage() {
                 <a
                   href={o.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-amber-dark)] hover:underline"
                 >
                   Visit{" "}

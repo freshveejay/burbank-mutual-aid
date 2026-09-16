@@ -53,7 +53,7 @@ export default function VolunteerPage() {
             <a
               href={FORM_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-cream)] px-5 py-2.5 text-sm font-medium text-[var(--color-forest-dark)] hover:bg-[var(--color-cream-dark)]"
             >
               Open form in a new tab{" "}

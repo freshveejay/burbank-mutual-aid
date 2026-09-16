@@ -80,7 +80,7 @@ export function Footer() {
               <a
                 href={site.instagram}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 hover:text-[var(--color-amber-dark)]"
               >
                 <InstagramIcon className="size-4" />

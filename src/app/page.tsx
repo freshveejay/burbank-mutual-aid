@@ -169,7 +169,7 @@ export default function Home() {
                 <a
                   href={p.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-amber-dark)] hover:underline"
                 >
                   Read article{" "}
@@ -208,7 +208,7 @@ function HelpCard({
   external?: boolean;
 }) {
   const linkProps = external
-    ? { target: "_blank", rel: "noreferrer" as const }
+    ? { target: "_blank", rel: "noopener noreferrer" as const }
     : {};
   return (
     <li className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-cream)] p-6">
