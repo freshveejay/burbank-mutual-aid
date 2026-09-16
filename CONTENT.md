@@ -1,6 +1,19 @@
 # Burbank Mutual Aid — Content Editing Guide
 
-This site is built so you (MJ) can update copy without touching React. Here's what to know.
+This site is built so you can update copy without touching React. Here's what to know.
+
+---
+
+## Pages
+
+| Page | URL | File |
+|---|---|---|
+| Home | `/` | `src/app/page.tsx` |
+| About | `/about` | `src/app/about/page.tsx` |
+| Get Involved | `/get-involved` | `src/app/get-involved/page.tsx` |
+| Press | `/press` | `src/app/press/page.tsx` |
+
+Old links still work: `/volunteer` and `/resources` both redirect to `/get-involved` (see `next.config.ts`).
 
 ---
 
@@ -11,45 +24,32 @@ Almost all sitewide copy lives in a single file: **`src/lib/site.ts`**.
 - Organization name, tagline
 - Public email
 - Instagram URL + handle
-- Meeting cadence, time, place, address, parking note
+- The vague "when and where" line (`event.summary` and `event.footer`)
 - Mission statement (full paragraph)
+- Related organizations (the side panel on Get Involved)
 - Press articles (title, outlet, author, date, excerpt, link)
 
-Open it, change the text, save, push. The site updates everywhere.
+Open it, change the text between the quotes, keep the commas, save, push. The site updates everywhere.
+
+**Do not put the exact distribution time or meeting spot anywhere on the site.** Share those with volunteers after they sign up. Only the vague phrasing ("Sunday evening in downtown Burbank") should appear.
 
 ---
 
 ## The volunteer form is your Google Form
 
-The `/volunteer` page embeds your existing Google Form via iframe. That means:
+The `/get-involved` page embeds your existing Google Form via iframe. That means:
 
 - **You manage the form questions** in Google Forms, like you already do.
 - **Submissions land in your Google Sheet** — same as today.
 - **No database, no admin login, no extra service to keep running.**
 
-If you want to swap the form (or update the URL), edit one line at the top of `src/app/volunteer/page.tsx`:
+If you want to swap the form (or update the URL), edit one line near the top of `src/app/get-involved/page.tsx`:
 
 ```ts
 const FORM_URL = "https://docs.google.com/forms/d/e/.../viewform";
 ```
 
 The site auto-redeploys when you push.
-
----
-
-## `{REPLACE: …}` markers
-
-Anywhere on the site you see a yellow dashed box like **`{REPLACE: mj-bio}`**, that's a placeholder waiting on real content from you. These boxes only appear when running the site locally (`pnpm dev`) — they're hidden on the live site. Each id matches a `<Replace id="…">` tag in the code.
-
-| ID | Page | What's needed |
-|---|---|---|
-| `mj-bio` | `/about` | A few sentences from MJ in her own words |
-| `team-photo` | `/about` | A photo from a Sunday distribution |
-| `gallery-photo-1` | `/press` | First photo for the gallery |
-| `gallery-photo-2` | `/press` | Second photo for the gallery |
-| `gallery-photo-3` | `/press` | Third photo for the gallery |
-
-When you replace one, delete the `<Replace … />` and put your real content (or `<Image>` tag, paragraph, etc.) in its place.
 
 ---
 
@@ -71,7 +71,7 @@ The site needs **only one** env var, and only for SEO polish:
 NEXT_PUBLIC_SITE_URL=https://burbankmutualaid.org   # update once domain is live
 ```
 
-Set it in Vercel → Settings → Environment Variables. Everything else (Resend, Supabase, admin password) was removed once the Google Form took over signups.
+Set it in Vercel → Settings → Environment Variables. It must start with `https://`.
 
 ---
 
@@ -83,11 +83,17 @@ Set it in Vercel → Settings → Environment Variables. Everything else (Resend
 
 ---
 
+## Keeping dependencies patched
+
+GitHub's Dependabot opens pull requests titled "Bump next …" when a security fix is released. Merge them: Vercel builds a preview first, and if the preview looks right, merging deploys it.
+
+---
+
 ## Future ideas (only if you want)
 
 - Donation system (Stripe — Vercel has a free template)
 - Newsletter (Buttondown, Beehiiv, or just a "subscribe via email" link)
 - Multilingual / Spanish toggle
-- Photo gallery with proper image optimization
+- Photos, once the group has agreed on how it wants to handle images of the people it serves
 
 None of these are needed. The Google-Form-powered site already does the job.

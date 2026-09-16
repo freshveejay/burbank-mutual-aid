@@ -5,7 +5,6 @@ import {
   HandHeart,
   ShoppingBag,
   Megaphone,
-  MapPin,
   Newspaper,
 } from "lucide-react";
 import { Container } from "@/components/Container";
@@ -36,13 +35,13 @@ export default function Home() {
             Solidarity, not charity.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[var(--color-charcoal-soft)] sm:text-xl">
-            Neighbors taking care of neighbors — every Sunday night, outside the
-            Burbank Central Library. Food, clothing, hygiene, and the kind of
+            Neighbors taking care of neighbors — every Sunday night in downtown
+            Burbank. Food, clothing, hygiene supplies, and the kind of
             consistency that builds trust.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/volunteer"
+              href="/get-involved"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--color-forest)] px-6 py-3 text-base font-medium text-[var(--color-cream)] hover:bg-[var(--color-forest-dark)]"
             >
               Join Us <ArrowRight aria-hidden="true" className="size-4" />
@@ -51,18 +50,18 @@ export default function Home() {
               href="/about"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--color-forest)]/30 bg-[var(--color-cream)]/70 px-6 py-3 text-base font-medium text-[var(--color-forest-dark)] hover:bg-[var(--color-cream)]"
             >
-              What is mutual aid?
+              About us
             </Link>
           </div>
         </Container>
       </section>
 
-      {/* Who We Are */}
+      {/* What We Do */}
       <section>
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 md:grid-cols-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-amber-dark)]">
-              Who We Are
+              What We Do
             </p>
             <p className="text-xl leading-relaxed text-[var(--color-charcoal)] md:col-span-2">
               {site.mission}
@@ -80,23 +79,13 @@ export default function Home() {
             </span>
             <div className="flex-1">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-amber-dark)]">
-                Next distribution
+                Next Distribution
               </p>
               <h2 className="mt-1 text-2xl font-semibold text-[var(--color-forest-dark)] sm:text-3xl">
-                {site.event.cadence} · {site.event.time}
+                {site.event.summary}.
               </h2>
-              <p className="mt-3 inline-flex items-start gap-2 text-base text-[var(--color-charcoal-soft)]">
-                <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0" />
-                <span>
-                  {site.event.place}
-                  <br />
-                  <span className="text-sm text-[var(--color-muted)]">
-                    {site.event.address}
-                  </span>
-                </span>
-              </p>
-              <p className="mt-3 max-w-2xl text-sm text-[var(--color-muted)]">
-                {site.event.note}
+              <p className="mt-3 max-w-2xl text-base text-[var(--color-charcoal-soft)]">
+                Sign up to volunteer and we&apos;ll share the details.
               </p>
             </div>
           </div>
@@ -117,7 +106,7 @@ export default function Home() {
               icon={<HandHeart aria-hidden="true" className="size-6" />}
               title="Volunteer"
               body="Show up Sunday nights, help prep and distribute, build relationships with our neighbors."
-              href="/volunteer"
+              href="/get-involved"
               cta="Sign up"
             />
             <HelpCard

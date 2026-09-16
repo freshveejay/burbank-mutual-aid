@@ -3,8 +3,7 @@ import { site } from "@/lib/site";
 
 const nav = [
   { href: "/about", label: "About" },
-  { href: "/volunteer", label: "Volunteer" },
-  { href: "/resources", label: "Resources" },
+  { href: "/get-involved", label: "Get Involved" },
   { href: "/press", label: "Press" },
 ];
 
@@ -38,7 +37,7 @@ export function Header() {
             ))}
             <li>
               <Link
-                href="/volunteer"
+                href="/get-involved"
                 className="rounded-full bg-[var(--color-forest)] px-4 py-2 text-sm font-medium text-[var(--color-cream)] hover:bg-[var(--color-forest-dark)]"
               >
                 Join Us

@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     template: "%s · Burbank Mutual Aid",
   },
   description:
-    "Neighbors taking care of neighbors. Burbank Mutual Aid shows up every Sunday at the Burbank Central Library with food, clothing, and hygiene items for our unhoused neighbors.",
+    "Neighbors taking care of neighbors. Burbank Mutual Aid shows up every Sunday evening in downtown Burbank with food, clothing, and hygiene supplies for our unhoused neighbors.",
   openGraph: {
     title: "Burbank Mutual Aid",
     description:
-      "Neighbors taking care of neighbors. Every Sunday, 7:30 PM, Burbank Central Library courtyard.",
+      "Neighbors taking care of neighbors. Every Sunday evening in downtown Burbank.",
     url: SITE_URL,
     siteName: "Burbank Mutual Aid",
     locale: "en_US",

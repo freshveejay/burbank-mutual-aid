@@ -33,9 +33,7 @@ export function Footer() {
             {site.tagline}
           </p>
           <p className="mt-4 text-sm text-[var(--color-charcoal-soft)]">
-            {site.event.cadence} · {site.event.time}
-            <br />
-            {site.event.place}
+            {site.event.footer}
           </p>
         </div>
         <nav aria-label="Footer">
@@ -50,18 +48,10 @@ export function Footer() {
             </li>
             <li>
               <Link
-                href="/volunteer"
+                href="/get-involved"
                 className="hover:text-[var(--color-amber-dark)]"
               >
-                Volunteer
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/resources"
-                className="hover:text-[var(--color-amber-dark)]"
-              >
-                Resources
+                Get Involved
               </Link>
             </li>
             <li>

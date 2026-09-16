@@ -1,6 +1,6 @@
 # Burbank Mutual Aid — website
 
-Five-page brochure site for Burbank Mutual Aid, built with Next.js and deployed on Vercel.
+Small brochure site for Burbank Mutual Aid (Home, About, Get Involved, Press), built with Next.js and deployed on Vercel.
 
 - **Editing copy, the volunteer form link, or press items:** see [`CONTENT.md`](./CONTENT.md). Almost everything lives in `src/lib/site.ts`.
 - **Local preview:** `pnpm install`, then `pnpm dev` and open <http://localhost:3000>.

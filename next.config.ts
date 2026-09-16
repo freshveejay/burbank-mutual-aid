@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  async redirects() {
+    return [
+      // Volunteer page was renamed; keep previously shared links working.
+      { source: "/volunteer", destination: "/get-involved", permanent: true },
+      // The Resources page was removed; its "Related organizations" now
+      // live in the side panel on Get Involved.
+      { source: "/resources", destination: "/get-involved", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

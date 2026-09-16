@@ -38,15 +38,3 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
-
-/* Visible marker for content MJ should swap in. Indexed in CONTENT.md. */
-.replace-marker {
-  display: inline-block;
-  background: #fff5d6;
-  border: 1px dashed var(--color-amber);
-  color: var(--color-amber-dark);
-  padding: 0.125rem 0.5rem;
-  border-radius: 0.25rem;
-  font-family: ui-monospace, monospace;
-  font-size: 0.85em;
-}

@@ -5,7 +5,7 @@ const SITE_URL =
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return ["", "/about", "/volunteer", "/resources", "/press"].map((path) => ({
+  return ["", "/about", "/get-involved", "/press"].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified,
     changeFrequency: "monthly",
