@@ -19,7 +19,7 @@ export function PageHeader({
 }: {
   eyebrow?: string;
   title: string;
-  lede?: string;
+  lede?: ReactNode;
 }) {
   return (
     <header className="border-b border-[var(--color-line)] bg-[var(--color-cream-dark)]/40 py-14 sm:py-20">

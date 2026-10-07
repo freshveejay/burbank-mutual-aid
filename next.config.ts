@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
       // The Resources page was removed; its "Related organizations" now
       // live in the side panel on Get Involved.
       { source: "/resources", destination: "/get-involved", permanent: true },
+      // The Press page was removed; the articles now live at the bottom of About.
+      { source: "/press", destination: "/about#press", permanent: true },
     ];
   },
 };

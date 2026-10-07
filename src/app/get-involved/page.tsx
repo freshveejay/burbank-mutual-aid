@@ -21,7 +21,13 @@ export default function GetInvolvedPage() {
       <PageHeader
         eyebrow="Get involved"
         title="Come show up with us."
-        lede={`Tell us a bit about yourself and we'll be in touch. Next Distribution: ${site.event.summary}.`}
+        lede={
+          <>
+            Tell us a bit about yourself and we&apos;ll be in touch.
+            <br />
+            Next Distribution: {site.event.summary}.
+          </>
+        }
       />
       <Container className="py-12 sm:py-16">
         <div className="grid gap-10 md:grid-cols-3">

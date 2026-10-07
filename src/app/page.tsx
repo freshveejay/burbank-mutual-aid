@@ -169,10 +169,10 @@ export default function Home() {
           </ul>
           <p className="mt-6 text-sm">
             <Link
-              href="/press"
+              href="/about#press"
               className="text-[var(--color-forest-dark)] underline underline-offset-4"
             >
-              See all press →
+              See all press on our About page →
             </Link>
           </p>
         </Container>

@@ -4,7 +4,6 @@ import { site } from "@/lib/site";
 const nav = [
   { href: "/about", label: "About" },
   { href: "/get-involved", label: "Get Involved" },
-  { href: "/press", label: "Press" },
 ];
 
 export function Header() {

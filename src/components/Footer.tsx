@@ -55,7 +55,10 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/press" className="hover:text-[var(--color-amber-dark)]">
+              <Link
+                href="/about#press"
+                className="hover:text-[var(--color-amber-dark)]"
+              >
                 Press
               </Link>
             </li>
